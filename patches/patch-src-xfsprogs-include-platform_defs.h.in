@@ -1,0 +1,15 @@
+$NetBSD$
+
+Port to NetBSD.
+
+--- src/xfsprogs/include/platform_defs.h.in
++++ src/xfsprogs/include/platform_defs.h.in
+@@ -68,6 +68,8 @@ typedef int (*filldir_t)(void *, const char *, int, off_t, uint64_t, unsigned);
+ #include <xfs/freebsd.h>
+ #elif defined(__FreeBSD_kernel__)
+ #include <xfs/gnukfreebsd.h>
++#elif defined(__NetBSD__)
++#include <xfs/netbsd.h>
+ #elif defined(__APPLE__)
+ #include <xfs/darwin.h>
+ #elif defined(__sgi__) || defined(__sgi)

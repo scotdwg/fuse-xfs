@@ -1,0 +1,26 @@
+$NetBSD$
+
+Port to NetBSD
+
+--- src/xfsprogs/include/builddefs.in
++++ src/xfsprogs/include/builddefs.in
+@@ -67,7 +67,6 @@ AWK		= @awk@
+ SED		= @sed@
+ TAR		= @tar@
+ ZIP		= @zip@
+-MAKE		= @make@
+ ECHO		= @echo@
+ SORT		= @sort@
+ LN_S		= @LN_S@
+@@ -123,6 +122,11 @@ PLDLIBS = -L/usr/local/lib -lintl
+ PCFLAGS = -I/usr/local/include $(GCCFLAGS)
+ DEPENDFLAGS = -D__FreeBSD__
+ endif
++ifeq ($(PKG_PLATFORM),netbsd)
++PLDLIBS = -lprop -L/usr/pkg/lib -lintl
++PCFLAGS = -I/usr/pkg/include $(GCCFLAGS)
++DEPENDFLAGS = -D__NetBSD__
++endif
+ 
+ GCFLAGS = $(OPTIMIZER) $(DEBUG) \
+ 	  -DVERSION=\"$(PKG_VERSION)\" -DLOCALEDIR=\"$(PKG_LOCALE_DIR)\"  \

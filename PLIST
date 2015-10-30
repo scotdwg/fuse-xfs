@@ -1,0 +1,4 @@
+@comment $NetBSD: PLIST,v 1.1.1.1 2011/07/09 15:27:11 tron Exp $
+bin/fuse-xfs
+bin/fuse-xfs.probe
+libexec/fuse-xfs

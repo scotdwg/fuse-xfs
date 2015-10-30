@@ -1,0 +1,2 @@
+Fuse-xfs is a FUSE module to mount XFS file system devices and/or
+images with read write support.

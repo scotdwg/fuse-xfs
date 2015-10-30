@@ -1,0 +1,9 @@
+$NetBSD$
+
+Make pkgsrc happy
+
+--- /dev/null
++++ configure
+@@ -0,0 +1,2 @@
++cd src/xfsprogs
++./configure --disable-gettext

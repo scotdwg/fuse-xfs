@@ -1,0 +1,28 @@
+$NetBSD$
+
+Ok...
+
+--- src/cli/Makefile
++++ src/cli/Makefile
+@@ -2,7 +2,7 @@ TOPLEVEL=../..
+ 
+ include ../Make.inc
+ 
+-LDFLAGS=-lreadline
++LDFLAGS=-L/usr/pkg/lib -lreadline
+ 
+ xfs-cli: $(BINS)/xfs-cli
+ 
+@@ -15,10 +15,10 @@ $(OBJECTS)/rcopy.o: rcopy.c $(SRC)/xfsutil/xfsutil.h
+ 	$(CC) $(XFS_INCLUDES) $(XFSUTILS_INCLUDES) -o $(OBJECTS)/rcopy.o -c rcopy.c
+ 
+ $(BINS)/xfs-cli: $(OBJECTS)/cli.o $(OBJECTS)/xfsutil.o $(LIBS)/libxfs.a
+-	$(CC) $(LDFLAGS) -o $(BINS)/xfs-cli $(OBJECTS)/cli.o $(OBJECTS)/xfsutil.o $(LIBS)/libxfs.a
++	$(CC) $(LDFLAGS) -o $(BINS)/xfs-cli $(OBJECTS)/cli.o $(OBJECTS)/xfsutil.o $(LIBS)/libxfs.a -lprop
+ 
+ $(BINS)/xfs-rcopy: $(OBJECTS)/rcopy.o $(OBJECTS)/xfsutil.o $(LIBS)/libxfs.a
+-	$(CC) -o $(BINS)/xfs-rcopy $(OBJECTS)/rcopy.o $(OBJECTS)/xfsutil.o $(LIBS)/libxfs.a
++	$(CC) -o $(BINS)/xfs-rcopy $(OBJECTS)/rcopy.o $(OBJECTS)/xfsutil.o $(LIBS)/libxfs.a -lprop
+ 
+ clean:
+ 

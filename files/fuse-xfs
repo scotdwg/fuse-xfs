@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /usr/pkg/libexec/fuse-xfs $1 -- $2

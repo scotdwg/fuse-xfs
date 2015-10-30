@@ -1,0 +1,18 @@
+$NetBSD$
+
+Create top-level Makefile
+
+--- /dev/null
++++ Makefile
+@@ -0,0 +1,11 @@
++all: fuse-xfs
++
++clean:
++	cd src && gmake clean
++
++install:
++	install -m 755 build/bin/fuse-xfs ${DESTDIR}${PREFIX}/libexec
++
++fuse-xfs:
++	cd src && gmake
++
