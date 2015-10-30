@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IFPkgDescriptionDescription</key>
+	<string>Fuse-xfs provides XFS Filesystem support for FUSE.
+
+Dependencies
+------------
+
+Fuse-xfs requires at least Fuse version 2.6.0
+
+- Mac OS:
+	Mac Fuse from http://code.google.com/p/macfuse/
+    Or OSXFUSE from http://osxfuse.github.com/
+
+	</string>
+	<key>IFPkgDescriptionTitle</key>
+	<string>Fuse XFS Support</string>
+</dict>
+</plist>

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+"/System/Library/Filesystems/fuse-xfs.fs/fuse-xfs.util" "-m" "$@"
