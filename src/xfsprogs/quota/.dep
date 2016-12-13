@@ -1,0 +1,45 @@
+init.o: init.c ../include/xfs/path.h ../include/xfs/xfs.h \
+ ../include/xfs/platform_defs.h ../include/xfs/freebsd.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/command.h ../include/xfs/input.h \
+ ../include/xfs/project.h init.h
+util.o: util.c init.h quota.h ../include/xfs/xqm.h ../include/xfs/xfs.h \
+ ../include/xfs/platform_defs.h ../include/xfs/freebsd.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/path.h ../include/xfs/project.h
+edit.o: edit.c ../include/xfs/input.h ../include/xfs/project.h \
+ ../include/xfs/xfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/xfs_fs.h \
+ ../include/xfs/command.h init.h quota.h ../include/xfs/xqm.h \
+ ../include/xfs/path.h
+free.o: free.c ../include/xfs/command.h init.h quota.h \
+ ../include/xfs/xqm.h ../include/xfs/xfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/xfs_fs.h ../include/xfs/path.h \
+ ../include/xfs/project.h
+path.o: path.c ../include/xfs/command.h ../include/xfs/input.h \
+ ../include/xfs/project.h ../include/xfs/xfs.h \
+ ../include/xfs/platform_defs.h ../include/xfs/freebsd.h \
+ ../include/xfs/xfs_fs.h init.h quota.h ../include/xfs/xqm.h \
+ ../include/xfs/path.h
+project.o: project.c ../include/xfs/command.h ../include/xfs/input.h \
+ ../include/xfs/project.h ../include/xfs/xfs.h \
+ ../include/xfs/platform_defs.h ../include/xfs/freebsd.h \
+ ../include/xfs/xfs_fs.h init.h quota.h ../include/xfs/xqm.h \
+ ../include/xfs/path.h
+quot.o: quot.c ../include/xfs/command.h init.h quota.h \
+ ../include/xfs/xqm.h ../include/xfs/xfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/xfs_fs.h ../include/xfs/path.h \
+ ../include/xfs/project.h
+quota.o: quota.c ../include/xfs/command.h init.h quota.h \
+ ../include/xfs/xqm.h ../include/xfs/xfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/xfs_fs.h ../include/xfs/path.h \
+ ../include/xfs/project.h
+report.o: report.c ../include/xfs/command.h init.h quota.h \
+ ../include/xfs/xqm.h ../include/xfs/xfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/xfs_fs.h ../include/xfs/path.h \
+ ../include/xfs/project.h
+state.o: state.c ../include/xfs/command.h init.h quota.h \
+ ../include/xfs/xqm.h ../include/xfs/xfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/xfs_fs.h ../include/xfs/path.h \
+ ../include/xfs/project.h
+freebsd.o: freebsd.c quota.h ../include/xfs/xqm.h ../include/xfs/xfs.h \
+ ../include/xfs/platform_defs.h ../include/xfs/freebsd.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/path.h ../include/xfs/project.h

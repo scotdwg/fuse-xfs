@@ -1,0 +1,12 @@
+
+This is kind-of hacky, but I wanted to preserve the source
+code in a buildable fashion for FreeBSD. This fuse-xfs isn't
+readily available in the ports tree, and our pkg_src server
+makes my head explode.
+
+To build on FreeBSD you need to install a bunch of packages
+(aclocal, automake, libtool, and probably a bunch I'm forgetting.
+
+Hopefully, I've captured the tree in it's post configure state
+so a build at this point from the source tree actually just
+compiles everthing we need.

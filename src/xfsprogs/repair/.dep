@@ -1,0 +1,730 @@
+agheader.o: agheader.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h globals.h \
+ agheader.h protos.h err_protos.h
+attr_repair.o: attr_repair.c ../include/libxfs.h \
+ ../include/xfs/platform_defs.h ../include/xfs/freebsd.h \
+ ../include/xfs/list.h ../include/xfs/cache.h ../include/xfs/bitops.h \
+ ../include/xfs/kmem.h ../include/xfs/swab.h ../include/xfs/xfs_fs.h \
+ ../include/xfs/xfs_types.h ../include/xfs/xfs_arch.h \
+ ../include/xfs/xfs_bit.h ../include/xfs/xfs_inum.h \
+ ../include/xfs/xfs_sb.h ../include/xfs/xfs_ag.h \
+ ../include/xfs/xfs_dir2.h ../include/xfs/xfs_mount.h \
+ ../include/xfs/xfs_da_btree.h ../include/xfs/xfs_bmap_btree.h \
+ ../include/xfs/xfs_alloc_btree.h ../include/xfs/xfs_ialloc_btree.h \
+ ../include/xfs/xfs_dir_sf.h ../include/xfs/xfs_dir2_sf.h \
+ ../include/xfs/xfs_attr_sf.h ../include/xfs/xfs_dinode.h \
+ ../include/xfs/xfs_inode.h ../include/xfs/xfs_buf_item.h \
+ ../include/xfs/xfs_inode_item.h ../include/xfs/xfs_alloc.h \
+ ../include/xfs/xfs_btree.h ../include/xfs/xfs_btree_trace.h \
+ ../include/xfs/xfs_bmap.h ../include/xfs/xfs_trans.h \
+ ../include/xfs/xfs_dir_leaf.h ../include/xfs/xfs_dir2_data.h \
+ ../include/xfs/xfs_dir2_leaf.h ../include/xfs/xfs_dir2_block.h \
+ ../include/xfs/xfs_dir2_node.h ../include/xfs/xfs_ialloc.h \
+ ../include/xfs/xfs_rtalloc.h ../include/xfs/xfs_attr_leaf.h \
+ ../include/xfs/xfs_quota.h ../include/xfs/xfs_trans_space.h \
+ ../include/xfs/xfs_imap.h ../include/xfs/xfs_log.h \
+ ../include/xfs/xfs_log_priv.h globals.h err_protos.h attr_repair.h dir.h \
+ dinode.h prefetch.h incore.h avl.h bmap.h protos.h
+avl.o: avl.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h avl.h
+avl64.o: avl64.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h avl64.h
+bmap.o: bmap.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h err_protos.h \
+ bmap.h
+btree.o: btree.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h btree.h
+dino_chunks.o: dino_chunks.c ../include/libxfs.h \
+ ../include/xfs/platform_defs.h ../include/xfs/freebsd.h \
+ ../include/xfs/list.h ../include/xfs/cache.h ../include/xfs/bitops.h \
+ ../include/xfs/kmem.h ../include/xfs/swab.h ../include/xfs/xfs_fs.h \
+ ../include/xfs/xfs_types.h ../include/xfs/xfs_arch.h \
+ ../include/xfs/xfs_bit.h ../include/xfs/xfs_inum.h \
+ ../include/xfs/xfs_sb.h ../include/xfs/xfs_ag.h \
+ ../include/xfs/xfs_dir2.h ../include/xfs/xfs_mount.h \
+ ../include/xfs/xfs_da_btree.h ../include/xfs/xfs_bmap_btree.h \
+ ../include/xfs/xfs_alloc_btree.h ../include/xfs/xfs_ialloc_btree.h \
+ ../include/xfs/xfs_dir_sf.h ../include/xfs/xfs_dir2_sf.h \
+ ../include/xfs/xfs_attr_sf.h ../include/xfs/xfs_dinode.h \
+ ../include/xfs/xfs_inode.h ../include/xfs/xfs_buf_item.h \
+ ../include/xfs/xfs_inode_item.h ../include/xfs/xfs_alloc.h \
+ ../include/xfs/xfs_btree.h ../include/xfs/xfs_btree_trace.h \
+ ../include/xfs/xfs_bmap.h ../include/xfs/xfs_trans.h \
+ ../include/xfs/xfs_dir_leaf.h ../include/xfs/xfs_dir2_data.h \
+ ../include/xfs/xfs_dir2_leaf.h ../include/xfs/xfs_dir2_block.h \
+ ../include/xfs/xfs_dir2_node.h ../include/xfs/xfs_ialloc.h \
+ ../include/xfs/xfs_rtalloc.h ../include/xfs/xfs_attr_leaf.h \
+ ../include/xfs/xfs_quota.h ../include/xfs/xfs_trans_space.h \
+ ../include/xfs/xfs_imap.h ../include/xfs/xfs_log.h \
+ ../include/xfs/xfs_log_priv.h avl.h globals.h agheader.h incore.h \
+ protos.h err_protos.h dir.h dinode.h prefetch.h versions.h progress.h
+dinode.o: dinode.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h avl.h globals.h \
+ agheader.h incore.h protos.h err_protos.h dir.h dir2.h dinode.h \
+ prefetch.h scan.h versions.h attr_repair.h bmap.h threads.h
+dir.o: dir.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h avl.h globals.h \
+ agheader.h incore.h protos.h err_protos.h dinode.h prefetch.h dir.h \
+ bmap.h
+dir2.o: dir2.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h avl.h globals.h \
+ incore.h err_protos.h dinode.h prefetch.h dir.h dir2.h bmap.h progress.h
+globals.o: globals.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h globals.h
+incore.o: incore.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h avl.h btree.h \
+ globals.h incore.h agheader.h protos.h err_protos.h threads.h
+incore_bmc.o: incore_bmc.c ../include/libxfs.h \
+ ../include/xfs/platform_defs.h ../include/xfs/freebsd.h \
+ ../include/xfs/list.h ../include/xfs/cache.h ../include/xfs/bitops.h \
+ ../include/xfs/kmem.h ../include/xfs/swab.h ../include/xfs/xfs_fs.h \
+ ../include/xfs/xfs_types.h ../include/xfs/xfs_arch.h \
+ ../include/xfs/xfs_bit.h ../include/xfs/xfs_inum.h \
+ ../include/xfs/xfs_sb.h ../include/xfs/xfs_ag.h \
+ ../include/xfs/xfs_dir2.h ../include/xfs/xfs_mount.h \
+ ../include/xfs/xfs_da_btree.h ../include/xfs/xfs_bmap_btree.h \
+ ../include/xfs/xfs_alloc_btree.h ../include/xfs/xfs_ialloc_btree.h \
+ ../include/xfs/xfs_dir_sf.h ../include/xfs/xfs_dir2_sf.h \
+ ../include/xfs/xfs_attr_sf.h ../include/xfs/xfs_dinode.h \
+ ../include/xfs/xfs_inode.h ../include/xfs/xfs_buf_item.h \
+ ../include/xfs/xfs_inode_item.h ../include/xfs/xfs_alloc.h \
+ ../include/xfs/xfs_btree.h ../include/xfs/xfs_btree_trace.h \
+ ../include/xfs/xfs_bmap.h ../include/xfs/xfs_trans.h \
+ ../include/xfs/xfs_dir_leaf.h ../include/xfs/xfs_dir2_data.h \
+ ../include/xfs/xfs_dir2_leaf.h ../include/xfs/xfs_dir2_block.h \
+ ../include/xfs/xfs_dir2_node.h ../include/xfs/xfs_ialloc.h \
+ ../include/xfs/xfs_rtalloc.h ../include/xfs/xfs_attr_leaf.h \
+ ../include/xfs/xfs_quota.h ../include/xfs/xfs_trans_space.h \
+ ../include/xfs/xfs_imap.h ../include/xfs/xfs_log.h \
+ ../include/xfs/xfs_log_priv.h avl.h globals.h incore.h agheader.h \
+ protos.h err_protos.h
+init.o: init.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h globals.h \
+ agheader.h protos.h err_protos.h avl.h dir.h bmap.h incore.h prefetch.h
+incore_ext.o: incore_ext.c ../include/libxfs.h \
+ ../include/xfs/platform_defs.h ../include/xfs/freebsd.h \
+ ../include/xfs/list.h ../include/xfs/cache.h ../include/xfs/bitops.h \
+ ../include/xfs/kmem.h ../include/xfs/swab.h ../include/xfs/xfs_fs.h \
+ ../include/xfs/xfs_types.h ../include/xfs/xfs_arch.h \
+ ../include/xfs/xfs_bit.h ../include/xfs/xfs_inum.h \
+ ../include/xfs/xfs_sb.h ../include/xfs/xfs_ag.h \
+ ../include/xfs/xfs_dir2.h ../include/xfs/xfs_mount.h \
+ ../include/xfs/xfs_da_btree.h ../include/xfs/xfs_bmap_btree.h \
+ ../include/xfs/xfs_alloc_btree.h ../include/xfs/xfs_ialloc_btree.h \
+ ../include/xfs/xfs_dir_sf.h ../include/xfs/xfs_dir2_sf.h \
+ ../include/xfs/xfs_attr_sf.h ../include/xfs/xfs_dinode.h \
+ ../include/xfs/xfs_inode.h ../include/xfs/xfs_buf_item.h \
+ ../include/xfs/xfs_inode_item.h ../include/xfs/xfs_alloc.h \
+ ../include/xfs/xfs_btree.h ../include/xfs/xfs_btree_trace.h \
+ ../include/xfs/xfs_bmap.h ../include/xfs/xfs_trans.h \
+ ../include/xfs/xfs_dir_leaf.h ../include/xfs/xfs_dir2_data.h \
+ ../include/xfs/xfs_dir2_leaf.h ../include/xfs/xfs_dir2_block.h \
+ ../include/xfs/xfs_dir2_node.h ../include/xfs/xfs_ialloc.h \
+ ../include/xfs/xfs_rtalloc.h ../include/xfs/xfs_attr_leaf.h \
+ ../include/xfs/xfs_quota.h ../include/xfs/xfs_trans_space.h \
+ ../include/xfs/xfs_imap.h ../include/xfs/xfs_log.h \
+ ../include/xfs/xfs_log_priv.h avl.h btree.h globals.h incore.h \
+ agheader.h protos.h err_protos.h avl64.h threads.h
+incore_ino.o: incore_ino.c ../include/libxfs.h \
+ ../include/xfs/platform_defs.h ../include/xfs/freebsd.h \
+ ../include/xfs/list.h ../include/xfs/cache.h ../include/xfs/bitops.h \
+ ../include/xfs/kmem.h ../include/xfs/swab.h ../include/xfs/xfs_fs.h \
+ ../include/xfs/xfs_types.h ../include/xfs/xfs_arch.h \
+ ../include/xfs/xfs_bit.h ../include/xfs/xfs_inum.h \
+ ../include/xfs/xfs_sb.h ../include/xfs/xfs_ag.h \
+ ../include/xfs/xfs_dir2.h ../include/xfs/xfs_mount.h \
+ ../include/xfs/xfs_da_btree.h ../include/xfs/xfs_bmap_btree.h \
+ ../include/xfs/xfs_alloc_btree.h ../include/xfs/xfs_ialloc_btree.h \
+ ../include/xfs/xfs_dir_sf.h ../include/xfs/xfs_dir2_sf.h \
+ ../include/xfs/xfs_attr_sf.h ../include/xfs/xfs_dinode.h \
+ ../include/xfs/xfs_inode.h ../include/xfs/xfs_buf_item.h \
+ ../include/xfs/xfs_inode_item.h ../include/xfs/xfs_alloc.h \
+ ../include/xfs/xfs_btree.h ../include/xfs/xfs_btree_trace.h \
+ ../include/xfs/xfs_bmap.h ../include/xfs/xfs_trans.h \
+ ../include/xfs/xfs_dir_leaf.h ../include/xfs/xfs_dir2_data.h \
+ ../include/xfs/xfs_dir2_leaf.h ../include/xfs/xfs_dir2_block.h \
+ ../include/xfs/xfs_dir2_node.h ../include/xfs/xfs_ialloc.h \
+ ../include/xfs/xfs_rtalloc.h ../include/xfs/xfs_attr_leaf.h \
+ ../include/xfs/xfs_quota.h ../include/xfs/xfs_trans_space.h \
+ ../include/xfs/xfs_imap.h ../include/xfs/xfs_log.h \
+ ../include/xfs/xfs_log_priv.h avl.h globals.h incore.h agheader.h \
+ protos.h threads.h err_protos.h
+phase1.o: phase1.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h globals.h \
+ agheader.h protos.h err_protos.h
+phase2.o: phase2.c ../include/xfs/libxlog.h ../include/xfs/libxfs.h \
+ ../include/xfs/platform_defs.h ../include/xfs/freebsd.h \
+ ../include/xfs/list.h ../include/xfs/cache.h ../include/xfs/bitops.h \
+ ../include/xfs/kmem.h ../include/xfs/swab.h ../include/xfs/xfs_fs.h \
+ ../include/xfs/xfs_types.h ../include/xfs/xfs_arch.h \
+ ../include/xfs/xfs_bit.h ../include/xfs/xfs_inum.h \
+ ../include/xfs/xfs_sb.h ../include/xfs/xfs_ag.h \
+ ../include/xfs/xfs_dir2.h ../include/xfs/xfs_mount.h \
+ ../include/xfs/xfs_da_btree.h ../include/xfs/xfs_bmap_btree.h \
+ ../include/xfs/xfs_alloc_btree.h ../include/xfs/xfs_ialloc_btree.h \
+ ../include/xfs/xfs_dir_sf.h ../include/xfs/xfs_dir2_sf.h \
+ ../include/xfs/xfs_attr_sf.h ../include/xfs/xfs_dinode.h \
+ ../include/xfs/xfs_inode.h ../include/xfs/xfs_buf_item.h \
+ ../include/xfs/xfs_inode_item.h ../include/xfs/xfs_alloc.h \
+ ../include/xfs/xfs_btree.h ../include/xfs/xfs_btree_trace.h \
+ ../include/xfs/xfs_bmap.h ../include/xfs/xfs_trans.h \
+ ../include/xfs/xfs_dir_leaf.h ../include/xfs/xfs_dir2_data.h \
+ ../include/xfs/xfs_dir2_leaf.h ../include/xfs/xfs_dir2_block.h \
+ ../include/xfs/xfs_dir2_node.h ../include/xfs/xfs_ialloc.h \
+ ../include/xfs/xfs_rtalloc.h ../include/xfs/xfs_attr_leaf.h \
+ ../include/xfs/xfs_quota.h ../include/xfs/xfs_trans_space.h \
+ ../include/xfs/xfs_imap.h ../include/xfs/xfs_log.h \
+ ../include/xfs/xfs_log_priv.h ../include/xfs/xfs_log_recover.h \
+ ../include/xfs/xfs_extfree_item.h avl.h globals.h agheader.h protos.h \
+ err_protos.h incore.h progress.h scan.h
+phase3.o: phase3.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h avl.h globals.h \
+ agheader.h incore.h protos.h err_protos.h dinode.h prefetch.h threads.h \
+ progress.h
+phase4.o: phase4.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h avl.h globals.h \
+ agheader.h incore.h protos.h err_protos.h dinode.h prefetch.h dir.h \
+ bmap.h versions.h dir2.h threads.h progress.h
+phase5.o: phase5.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h avl.h globals.h \
+ agheader.h incore.h protos.h err_protos.h dinode.h prefetch.h rt.h \
+ versions.h threads.h progress.h
+phase6.o: phase6.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h avl.h globals.h \
+ agheader.h incore.h dir.h dir2.h protos.h err_protos.h dinode.h \
+ prefetch.h progress.h threads.h versions.h
+phase7.o: phase7.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h avl.h globals.h \
+ agheader.h incore.h protos.h err_protos.h dinode.h prefetch.h versions.h \
+ progress.h
+progress.o: progress.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h globals.h \
+ progress.h err_protos.h
+prefetch.o: prefetch.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h avl.h btree.h \
+ globals.h agheader.h incore.h dir.h dir2.h protos.h err_protos.h \
+ dinode.h prefetch.h bmap.h versions.h threads.h progress.h
+rt.o: rt.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h avl.h globals.h \
+ agheader.h incore.h dinode.h prefetch.h protos.h err_protos.h rt.h
+sb.o: sb.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h \
+ ../include/libxlog.h ../include/xfs/libxfs.h \
+ ../include/xfs/xfs_log_recover.h ../include/xfs/xfs_extfree_item.h \
+ agheader.h globals.h protos.h err_protos.h
+scan.o: scan.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h avl.h globals.h \
+ agheader.h incore.h protos.h err_protos.h dinode.h prefetch.h scan.h \
+ versions.h bmap.h progress.h threads.h
+threads.o: threads.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h threads.h \
+ err_protos.h protos.h globals.h
+versions.o: versions.c ../include/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h versions.h \
+ err_protos.h globals.h
+xfs_repair.o: xfs_repair.c ../include/xfs/libxlog.h \
+ ../include/xfs/libxfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/list.h ../include/xfs/cache.h \
+ ../include/xfs/bitops.h ../include/xfs/kmem.h ../include/xfs/swab.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/xfs_types.h \
+ ../include/xfs/xfs_arch.h ../include/xfs/xfs_bit.h \
+ ../include/xfs/xfs_inum.h ../include/xfs/xfs_sb.h \
+ ../include/xfs/xfs_ag.h ../include/xfs/xfs_dir2.h \
+ ../include/xfs/xfs_mount.h ../include/xfs/xfs_da_btree.h \
+ ../include/xfs/xfs_bmap_btree.h ../include/xfs/xfs_alloc_btree.h \
+ ../include/xfs/xfs_ialloc_btree.h ../include/xfs/xfs_dir_sf.h \
+ ../include/xfs/xfs_dir2_sf.h ../include/xfs/xfs_attr_sf.h \
+ ../include/xfs/xfs_dinode.h ../include/xfs/xfs_inode.h \
+ ../include/xfs/xfs_buf_item.h ../include/xfs/xfs_inode_item.h \
+ ../include/xfs/xfs_alloc.h ../include/xfs/xfs_btree.h \
+ ../include/xfs/xfs_btree_trace.h ../include/xfs/xfs_bmap.h \
+ ../include/xfs/xfs_trans.h ../include/xfs/xfs_dir_leaf.h \
+ ../include/xfs/xfs_dir2_data.h ../include/xfs/xfs_dir2_leaf.h \
+ ../include/xfs/xfs_dir2_block.h ../include/xfs/xfs_dir2_node.h \
+ ../include/xfs/xfs_ialloc.h ../include/xfs/xfs_rtalloc.h \
+ ../include/xfs/xfs_attr_leaf.h ../include/xfs/xfs_quota.h \
+ ../include/xfs/xfs_trans_space.h ../include/xfs/xfs_imap.h \
+ ../include/xfs/xfs_log.h ../include/xfs/xfs_log_priv.h \
+ ../include/xfs/xfs_log_recover.h ../include/xfs/xfs_extfree_item.h avl.h \
+ avl64.h globals.h versions.h agheader.h protos.h incore.h err_protos.h \
+ prefetch.h threads.h progress.h

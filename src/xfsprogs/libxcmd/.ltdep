@@ -1,0 +1,18 @@
+command.lo: command.c ../include/xfs/xfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/xfs_fs.h \
+ ../include/xfs/command.h ../include/xfs/input.h ../include/xfs/project.h
+input.lo: input.c ../include/xfs/xfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/xfs_fs.h ../include/xfs/input.h \
+ ../include/xfs/project.h
+paths.lo: paths.c ../include/xfs/path.h ../include/xfs/xfs.h \
+ ../include/xfs/platform_defs.h ../include/xfs/freebsd.h \
+ ../include/xfs/xfs_fs.h ../include/xfs/input.h ../include/xfs/project.h
+projects.lo: projects.c ../include/xfs/project.h ../include/xfs/xfs.h \
+ ../include/xfs/platform_defs.h ../include/xfs/freebsd.h \
+ ../include/xfs/xfs_fs.h
+help.lo: help.c ../include/xfs/xfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/xfs_fs.h \
+ ../include/xfs/command.h
+quit.lo: quit.c ../include/xfs/xfs.h ../include/xfs/platform_defs.h \
+ ../include/xfs/freebsd.h ../include/xfs/xfs_fs.h \
+ ../include/xfs/command.h
