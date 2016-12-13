@@ -280,7 +280,7 @@ xfs_mount_common(xfs_mount_t *mp, xfs_sb_t *sbp)
 	ASSERT(sbp->sb_inodesize >= 256 && sbp->sb_inodesize <= 2048);
 	switch (sbp->sb_inodesize) {
 	case 256:
-		mp->m_attroffset = XFS_LITINO(mp) -
+		mp->m_attroffset = XFS_LITINO(mp, sbp->sb_versionnum) -
 				   XFS_BMDR_SPACE_CALC(MINABTPTRS);
 		break;
 	case 512:
@@ -291,7 +291,7 @@ xfs_mount_common(xfs_mount_t *mp, xfs_sb_t *sbp)
 	default:
 		ASSERT(0);
 	}
-	ASSERT(mp->m_attroffset < XFS_LITINO(mp));
+	ASSERT(mp->m_attroffset < XFS_LITINO(mp, sbp->sb_version));
 
 	mp->m_alloc_mxr[0] = xfs_allocbt_maxrecs(mp, sbp->sb_blocksize, 1);
 	mp->m_alloc_mxr[1] = xfs_allocbt_maxrecs(mp, sbp->sb_blocksize, 0);

@@ -437,8 +437,8 @@ extern void	libxfs_iput (xfs_inode_t *, uint);
 #include <xfs/xfs_dir_leaf.h>	/* dirv1 support in db & repair */ 
 #include <xfs/xfs_dir2_data.h>
 #include <xfs/xfs_dir2_leaf.h>
-#include <xfs/xfs_dir2_block.h>
 #include <xfs/xfs_dir2_node.h>
+#include <xfs/xfs_dir2_block.h>
 
 /* Shared utility routines */
 extern unsigned int	libxfs_log2_roundup(unsigned int i);

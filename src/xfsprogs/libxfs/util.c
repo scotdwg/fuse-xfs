@@ -82,8 +82,9 @@ libxfs_iread(
 	 * know that this is a new incore inode.
 	 */
 	error = xfs_itobp(mp, tp, ip, &dip, &bp, bno, 0, XFS_BUF_LOCK);
-	if (error) 
+	if (error)  {
 		return error;
+	}
 
 	/*
 	 * If we got something that isn't an inode it means someone

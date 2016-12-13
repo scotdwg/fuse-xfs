@@ -91,6 +91,40 @@ typedef struct xfs_agf {
 #define	XFS_AGF_BLOCK(mp)	XFS_HDR_BLOCK(mp, XFS_AGF_DADDR(mp))
 #define	XFS_BUF_TO_AGF(bp)	((xfs_agf_t *)XFS_BUF_PTR(bp))
 
+/*
+ * The third a.g. block contains the a.g. freelist, an array
+ * of block pointers to blocks owned by the allocation btree code.
+ */
+#define XFS_AGFL_DADDR(mp)  ((xfs_daddr_t)(3 << (mp)->m_sectbb_log))
+#define XFS_AGFL_BLOCK(mp)  XFS_HDR_BLOCK(mp, XFS_AGFL_DADDR(mp))
+#define XFS_BUF_TO_AGFL(bp) ((xfs_agfl_t *)((bp)->b_addr))
+
+#define XFS_BUF_TO_AGFL_BNO(mp, bp) \
+    (xfs_sb_version_hascrc(&((mp)->m_sb)) ? \
+        &(XFS_BUF_TO_AGFL(bp)->agfl_bno[0]) : \
+        (__be32 *)(bp)->b_addr)
+
+/*
+ * Size of the AGFL.  For CRC-enabled filesystes we steal a couple of
+ * slots in the beginning of the block for a proper header with the
+ * location information and CRC.
+ */
+#define XFS_AGFL_SIZE(mp) \
+    (((mp)->m_sb.sb_sectsize - \
+     (xfs_sb_version_hascrc(&((mp)->m_sb)) ? \
+        sizeof(struct xfs_agfl) : 0)) / \
+      sizeof(xfs_agblock_t))
+
+typedef struct xfs_agfl {
+    __be32      agfl_magicnum;
+    __be32      agfl_seqno;
+    uuid_t      agfl_uuid;
+    __be64      agfl_lsn;
+    __be32      agfl_crc;
+    __be32      agfl_bno[]; /* actually XFS_AGFL_SIZE(mp) */
+} xfs_agfl_t;
+
+
 
 /*
  * Size of the unlinked inode hash table in the agi.
@@ -141,19 +175,6 @@ typedef struct xfs_agi {
 #define XFS_AGI_DADDR(mp)	((xfs_daddr_t)(2 << (mp)->m_sectbb_log))
 #define	XFS_AGI_BLOCK(mp)	XFS_HDR_BLOCK(mp, XFS_AGI_DADDR(mp))
 #define	XFS_BUF_TO_AGI(bp)	((xfs_agi_t *)XFS_BUF_PTR(bp))
-
-/*
- * The third a.g. block contains the a.g. freelist, an array
- * of block pointers to blocks owned by the allocation btree code.
- */
-#define XFS_AGFL_DADDR(mp)	((xfs_daddr_t)(3 << (mp)->m_sectbb_log))
-#define	XFS_AGFL_BLOCK(mp)	XFS_HDR_BLOCK(mp, XFS_AGFL_DADDR(mp))
-#define XFS_AGFL_SIZE(mp)	((mp)->m_sb.sb_sectsize / sizeof(xfs_agblock_t))
-#define	XFS_BUF_TO_AGFL(bp)	((xfs_agfl_t *)XFS_BUF_PTR(bp))
-
-typedef struct xfs_agfl {
-	__be32		agfl_bno[1];	/* actually XFS_AGFL_SIZE(mp) */
-} xfs_agfl_t;
 
 /*
  * Busy block/extent entry.  Used in perag to mark blocks that have been freed

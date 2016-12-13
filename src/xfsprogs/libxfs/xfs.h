@@ -42,6 +42,8 @@
  *         specifically there to support the user level build.
  */
 
+#include <stdbool.h>
+
 #include <xfs/libxfs.h>
 
 typedef struct { dev_t dev; }	xfs_buftarg_t;

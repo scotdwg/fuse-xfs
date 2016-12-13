@@ -224,9 +224,15 @@ xfs_dir2_block_to_sf(
 				((char *)dep - (char *)block));
 			memcpy(sfep->name, dep->name, dep->namelen);
 			temp = be64_to_cpu(dep->inumber);
-			xfs_dir2_sf_put_inumber(sfp, &temp,
-				xfs_dir2_sf_inumberp(sfep));
-			sfep = xfs_dir2_sf_nextentry(sfp, sfep);
+			if (XFS_SB_VERSION_NUM(&dp->i_mount->m_sb) == XFS_SB_VERSION_5) {
+				xfs_dir2_sf_put_inumber(sfp, &temp,
+					xfs_dir3_sf_inumberp(sfep));
+				sfep = xfs_dir3_sf_nextentry(&sfp->hdr, sfep);
+			} else {
+				xfs_dir2_sf_put_inumber(sfp, &temp,
+					xfs_dir2_sf_inumberp(sfep));
+				sfep = xfs_dir2_sf_nextentry(&sfp->hdr, sfep);
+			}
 		}
 		ptr += xfs_dir2_data_entsize(dep->namelen);
 	}
@@ -385,8 +391,12 @@ xfs_dir2_sf_addname_easy(
 	sfep->namelen = args->namelen;
 	xfs_dir2_sf_put_offset(sfep, offset);
 	memcpy(sfep->name, args->name, sfep->namelen);
-	xfs_dir2_sf_put_inumber(sfp, &args->inumber,
-		xfs_dir2_sf_inumberp(sfep));
+	if (XFS_SB_VERSION_NUM(&dp->i_mount->m_sb) == XFS_SB_VERSION_5)
+		xfs_dir2_sf_put_inumber(sfp, &args->inumber,
+			xfs_dir3_sf_inumberp(sfep));
+	else
+		xfs_dir2_sf_put_inumber(sfp, &args->inumber,
+			xfs_dir2_sf_inumberp(sfep));
 	/*
 	 * Update the header and inode.
 	 */
@@ -447,12 +457,16 @@ xfs_dir2_sf_addname_hard(
 	      add_datasize = xfs_dir2_data_entsize(args->namelen),
 	      eof = (char *)oldsfep == &buf[old_isize];
 	     !eof;
-	     offset = new_offset + xfs_dir2_data_entsize(oldsfep->namelen),
-	      oldsfep = xfs_dir2_sf_nextentry(oldsfp, oldsfep),
-	      eof = (char *)oldsfep == &buf[old_isize]) {
+	     offset = new_offset + xfs_dir2_data_entsize(oldsfep->namelen)) {
 		new_offset = xfs_dir2_sf_get_offset(oldsfep);
 		if (offset + add_datasize <= new_offset)
 			break;
+		if (XFS_SB_VERSION_NUM(&dp->i_mount->m_sb) == XFS_SB_VERSION_5) {
+			oldsfep = xfs_dir3_sf_nextentry(&oldsfp->hdr, oldsfep);
+		} else {
+			oldsfep = xfs_dir2_sf_nextentry(&oldsfp->hdr, oldsfep);
+		}
+		eof = (char *)oldsfep == &buf[old_isize];
 	}
 	/*
 	 * Get rid of the old directory, then allocate space for
@@ -477,8 +491,12 @@ xfs_dir2_sf_addname_hard(
 	sfep->namelen = args->namelen;
 	xfs_dir2_sf_put_offset(sfep, offset);
 	memcpy(sfep->name, args->name, sfep->namelen);
-	xfs_dir2_sf_put_inumber(sfp, &args->inumber,
-		xfs_dir2_sf_inumberp(sfep));
+	if (XFS_SB_VERSION_NUM(&dp->i_mount->m_sb) == XFS_SB_VERSION_5)
+		xfs_dir2_sf_put_inumber(sfp, &args->inumber,
+			xfs_dir3_sf_inumberp(sfep));
+	else 
+		xfs_dir2_sf_put_inumber(sfp, &args->inumber,
+			xfs_dir2_sf_inumberp(sfep));
 	sfp->hdr.count++;
 #if XFS_BIG_INUMS
 	if (args->inumber > XFS_DIR2_MAX_SHORT_INUM && !objchange)
@@ -488,7 +506,11 @@ xfs_dir2_sf_addname_hard(
 	 * If there's more left to copy, do that.
 	 */
 	if (!eof) {
-		sfep = xfs_dir2_sf_nextentry(sfp, sfep);
+		if (XFS_SB_VERSION_NUM(&dp->i_mount->m_sb) == XFS_SB_VERSION_5) {
+			sfep = xfs_dir3_sf_nextentry(&sfp->hdr, sfep);
+		} else {
+			sfep = xfs_dir2_sf_nextentry(&sfp->hdr, sfep);
+		}
 		memcpy(sfep, oldsfep, old_isize - nbytes);
 	}
 	kmem_free(buf);
@@ -538,7 +560,11 @@ xfs_dir2_sf_addname_pick(
 			holefit = offset + size <= xfs_dir2_sf_get_offset(sfep);
 		offset = xfs_dir2_sf_get_offset(sfep) +
 			 xfs_dir2_data_entsize(sfep->namelen);
-		sfep = xfs_dir2_sf_nextentry(sfp, sfep);
+		if (XFS_SB_VERSION_NUM(&dp->i_mount->m_sb) == XFS_SB_VERSION_5) {
+			sfep = xfs_dir3_sf_nextentry(&sfp->hdr, sfep);
+		} else {
+			sfep = xfs_dir2_sf_nextentry(&sfp->hdr, sfep);
+		}
 	}
 	/*
 	 * Calculate data bytes used excluding the new entry, if this
@@ -601,14 +627,19 @@ xfs_dir2_sf_check(
 	i8count = ino > XFS_DIR2_MAX_SHORT_INUM;
 
 	for (i = 0, sfep = xfs_dir2_sf_firstentry(sfp);
-	     i < sfp->hdr.count;
-	     i++, sfep = xfs_dir2_sf_nextentry(sfp, sfep)) {
+	     i < sfp->hdr.count; i++) {
 		ASSERT(xfs_dir2_sf_get_offset(sfep) >= offset);
-		ino = xfs_dir2_sf_get_inumber(sfp, xfs_dir2_sf_inumberp(sfep));
-		i8count += ino > XFS_DIR2_MAX_SHORT_INUM;
 		offset =
 			xfs_dir2_sf_get_offset(sfep) +
 			xfs_dir2_data_entsize(sfep->namelen);
+		if (XFS_SB_VERSION_NUM(&dp->i_mount->m_sb) == XFS_SB_VERSION_5) {
+			ino = xfs_dir2_sf_get_inumber(sfp, xfs_dir3_sf_inumberp(sfep));
+			sfep = xfs_dir3_sf_nextentry(&sfp->hdr, sfep);
+		} else {
+			ino = xfs_dir2_sf_get_inumber(sfp, xfs_dir2_sf_inumberp(sfep));
+			sfep = xfs_dir2_sf_nextentry(&sfp->hdr, sfep);
+		}
+		i8count += ino > XFS_DIR2_MAX_SHORT_INUM;
 	}
 	ASSERT(i8count == sfp->hdr.i8count);
 	ASSERT(XFS_BIG_INUMS || i8count == 0);
@@ -725,8 +756,7 @@ xfs_dir2_sf_lookup(
 	 * Loop over all the entries trying to match ours.
 	 */
 	ci_sfep = NULL;
-	for (i = 0, sfep = xfs_dir2_sf_firstentry(sfp); i < sfp->hdr.count;
-				i++, sfep = xfs_dir2_sf_nextentry(sfp, sfep)) {
+	for (i = 0, sfep = xfs_dir2_sf_firstentry(sfp); i < sfp->hdr.count; i++) {
 		/*
 		 * Compare name and if it's an exact match, return the inode
 		 * number. If it's the first case-insensitive match, store the
@@ -736,11 +766,20 @@ xfs_dir2_sf_lookup(
 								sfep->namelen);
 		if (cmp != XFS_CMP_DIFFERENT && cmp != args->cmpresult) {
 			args->cmpresult = cmp;
-			args->inumber = xfs_dir2_sf_get_inumber(sfp,
+			if (XFS_SB_VERSION_NUM(&dp->i_mount->m_sb) == XFS_SB_VERSION_5)
+				args->inumber = xfs_dir2_sf_get_inumber(sfp,
+						xfs_dir3_sf_inumberp(sfep));
+			else
+				args->inumber = xfs_dir2_sf_get_inumber(sfp,
 						xfs_dir2_sf_inumberp(sfep));
 			if (cmp == XFS_CMP_EXACT)
 				return XFS_ERROR(EEXIST);
 			ci_sfep = sfep;
+		}
+		if (XFS_SB_VERSION_NUM(&dp->i_mount->m_sb) == XFS_SB_VERSION_5) {
+			sfep = xfs_dir3_sf_nextentry(&sfp->hdr, sfep);
+		} else {
+			sfep = xfs_dir2_sf_nextentry(&sfp->hdr, sfep);
 		}
 	}
 	ASSERT(args->op_flags & XFS_DA_OP_OKNOENT);
@@ -791,14 +830,18 @@ xfs_dir2_sf_removename(
 	 * Loop over the old directory entries.
 	 * Find the one we're deleting.
 	 */
-	for (i = 0, sfep = xfs_dir2_sf_firstentry(sfp); i < sfp->hdr.count;
-				i++, sfep = xfs_dir2_sf_nextentry(sfp, sfep)) {
+	for (i = 0, sfep = xfs_dir2_sf_firstentry(sfp); i < sfp->hdr.count; i++) {
 		if (xfs_da_compname(args, sfep->name, sfep->namelen) ==
 								XFS_CMP_EXACT) {
 			ASSERT(xfs_dir2_sf_get_inumber(sfp,
 						xfs_dir2_sf_inumberp(sfep)) ==
 								args->inumber);
 			break;
+		}
+		if (XFS_SB_VERSION_NUM(&dp->i_mount->m_sb) == XFS_SB_VERSION_5) {
+			sfep = xfs_dir3_sf_nextentry(&sfp->hdr, sfep);
+		} else {
+			sfep = xfs_dir2_sf_nextentry(&sfp->hdr, sfep);
 		}
 	}
 	/*
@@ -926,8 +969,7 @@ xfs_dir2_sf_replace(
 	 */
 	else {
 		for (i = 0, sfep = xfs_dir2_sf_firstentry(sfp);
-				i < sfp->hdr.count;
-				i++, sfep = xfs_dir2_sf_nextentry(sfp, sfep)) {
+				i < sfp->hdr.count; i++) {
 			if (xfs_da_compname(args, sfep->name, sfep->namelen) ==
 								XFS_CMP_EXACT) {
 #if XFS_BIG_INUMS || defined(DEBUG)
@@ -935,9 +977,18 @@ xfs_dir2_sf_replace(
 					xfs_dir2_sf_inumberp(sfep));
 				ASSERT(args->inumber != ino);
 #endif
-				xfs_dir2_sf_put_inumber(sfp, &args->inumber,
-					xfs_dir2_sf_inumberp(sfep));
+				if (XFS_SB_VERSION_NUM(&dp->i_mount->m_sb) == XFS_SB_VERSION_5)
+					xfs_dir2_sf_put_inumber(sfp, &args->inumber,
+						xfs_dir3_sf_inumberp(sfep));
+				else
+					xfs_dir2_sf_put_inumber(sfp, &args->inumber,
+						xfs_dir2_sf_inumberp(sfep));
 				break;
+			}
+			if (XFS_SB_VERSION_NUM(&dp->i_mount->m_sb) == XFS_SB_VERSION_5) {
+				sfep = xfs_dir3_sf_nextentry(&sfp->hdr, sfep);
+			} else {
+				sfep = xfs_dir2_sf_nextentry(&sfp->hdr, sfep);
 			}
 		}
 		/*
@@ -1044,15 +1095,23 @@ xfs_dir2_sf_toino4(
 	 */
 	for (i = 0, sfep = xfs_dir2_sf_firstentry(sfp),
 		    oldsfep = xfs_dir2_sf_firstentry(oldsfp);
-	     i < sfp->hdr.count;
-	     i++, sfep = xfs_dir2_sf_nextentry(sfp, sfep),
-		  oldsfep = xfs_dir2_sf_nextentry(oldsfp, oldsfep)) {
+	     i < sfp->hdr.count; i++) {
 		sfep->namelen = oldsfep->namelen;
 		sfep->offset = oldsfep->offset;
 		memcpy(sfep->name, oldsfep->name, sfep->namelen);
-		ino = xfs_dir2_sf_get_inumber(oldsfp,
-			xfs_dir2_sf_inumberp(oldsfep));
-		xfs_dir2_sf_put_inumber(sfp, &ino, xfs_dir2_sf_inumberp(sfep));
+		if (XFS_SB_VERSION_NUM(&dp->i_mount->m_sb) == XFS_SB_VERSION_5) {
+			ino = xfs_dir2_sf_get_inumber(oldsfp,
+				xfs_dir3_sf_inumberp(oldsfep));
+			xfs_dir2_sf_put_inumber(sfp, &ino, xfs_dir3_sf_inumberp(sfep));
+			sfep = xfs_dir3_sf_nextentry(&sfp->hdr, sfep);
+			oldsfep = xfs_dir3_sf_nextentry(&oldsfp->hdr, oldsfep);
+		} else {
+			ino = xfs_dir2_sf_get_inumber(oldsfp,
+				xfs_dir2_sf_inumberp(oldsfep));
+			xfs_dir2_sf_put_inumber(sfp, &ino, xfs_dir2_sf_inumberp(sfep));
+			sfep = xfs_dir2_sf_nextentry(&sfp->hdr, sfep);
+			oldsfep = xfs_dir2_sf_nextentry(&oldsfp->hdr, oldsfep);
+		}
 	}
 	/*
 	 * Clean up the inode.
@@ -1121,15 +1180,23 @@ xfs_dir2_sf_toino8(
 	 */
 	for (i = 0, sfep = xfs_dir2_sf_firstentry(sfp),
 		    oldsfep = xfs_dir2_sf_firstentry(oldsfp);
-	     i < sfp->hdr.count;
-	     i++, sfep = xfs_dir2_sf_nextentry(sfp, sfep),
-		  oldsfep = xfs_dir2_sf_nextentry(oldsfp, oldsfep)) {
+	     i < sfp->hdr.count; i++) {
 		sfep->namelen = oldsfep->namelen;
 		sfep->offset = oldsfep->offset;
 		memcpy(sfep->name, oldsfep->name, sfep->namelen);
-		ino = xfs_dir2_sf_get_inumber(oldsfp,
-			xfs_dir2_sf_inumberp(oldsfep));
-		xfs_dir2_sf_put_inumber(sfp, &ino, xfs_dir2_sf_inumberp(sfep));
+		if (XFS_SB_VERSION_NUM(&dp->i_mount->m_sb) == XFS_SB_VERSION_5) {
+			ino = xfs_dir2_sf_get_inumber(oldsfp,
+				xfs_dir3_sf_inumberp(oldsfep));
+			xfs_dir2_sf_put_inumber(sfp, &ino, xfs_dir3_sf_inumberp(sfep));
+			sfep = xfs_dir3_sf_nextentry(&sfp->hdr, sfep);
+			oldsfep = xfs_dir3_sf_nextentry(&oldsfp->hdr, oldsfep);
+		} else {
+			ino = xfs_dir2_sf_get_inumber(oldsfp,
+				xfs_dir2_sf_inumberp(oldsfep));
+			xfs_dir2_sf_put_inumber(sfp, &ino, xfs_dir2_sf_inumberp(sfep));
+			sfep = xfs_dir2_sf_nextentry(&sfp->hdr, sfep);
+			oldsfep = xfs_dir2_sf_nextentry(&oldsfp->hdr, oldsfep);
+		}
 	}
 	/*
 	 * Clean up the inode.

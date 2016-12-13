@@ -793,8 +793,8 @@ process_sf_dir2_fixi8(
 			xfs_dir2_sf_inumberp(oldsfep));
 		xfs_dir2_sf_put_inumber(newsfp, &ino,
 			xfs_dir2_sf_inumberp(newsfep));
-		oldsfep = xfs_dir2_sf_nextentry(oldsfp, oldsfep);
-		newsfep = xfs_dir2_sf_nextentry(newsfp, newsfep);
+		oldsfep = xfs_dir2_sf_nextentry(&oldsfp->hdr, oldsfep);
+		newsfep = xfs_dir2_sf_nextentry(&newsfp->hdr, newsfep);
 	}
 	*next_sfep = newsfep;
 	free(oldsfp);
@@ -812,14 +812,14 @@ process_sf_dir2_fixoff(
 	xfs_dir2_sf_entry_t	*sfep;
 	xfs_dir2_sf_t		*sfp;
 
-	sfp = &dip->di_u.di_dir2sf;
+	sfp = (xfs_dir2_sf_t *)XFS_DFORK_DPTR(dip);
 	sfep = xfs_dir2_sf_firstentry(sfp);
 	offset = XFS_DIR2_DATA_FIRST_OFFSET;
 
 	for (i = 0; i < sfp->hdr.count; i++) {
 		xfs_dir2_sf_put_offset(sfep, offset);
 		offset += xfs_dir2_data_entsize(sfep->namelen);
-		sfep = xfs_dir2_sf_nextentry(sfp, sfep);
+		sfep = xfs_dir2_sf_nextentry(&sfp->hdr, sfep);
 	}
 }
 
@@ -864,7 +864,7 @@ process_sf_dir2(
 	xfs_dir2_sf_entry_t	*tmp_sfep;
 	xfs_ino_t		zero = 0;
 
-	sfp = &dip->di_u.di_dir2sf;
+	sfp = (xfs_dir2_sf_t *)XFS_DFORK_DPTR(dip);
 	max_size = XFS_DFORK_DSIZE(dip, mp);
 	num_entries = sfp->hdr.count;
 	ino_dir_size = be64_to_cpu(dip->di_core.di_size);

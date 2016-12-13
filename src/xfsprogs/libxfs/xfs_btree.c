@@ -1528,8 +1528,9 @@ xfs_btree_lookup(
 	for (level = cur->bc_nlevels - 1, diff = 1; level >= 0; level--) {
 		/* Get the block we need to do the lookup on. */
 		error = xfs_btree_lookup_get_block(cur, level, pp, &block);
-		if (error)
+		if (error) {
 			goto error0;
+		}
 
 		if (diff == 0) {
 			/*

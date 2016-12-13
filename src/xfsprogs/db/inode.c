@@ -63,9 +63,11 @@ const field_t	inode_flds[] = {
 	{ "core", FLDT_DINODE_CORE, OI(OFF(core)), C1, 0, TYP_NONE },
 	{ "next_unlinked", FLDT_AGINO, OI(OFF(next_unlinked)), C1, 0,
 	  TYP_INODE },
+#if 0
 	{ "u", FLDT_DINODE_U, OI(OFF(u)), C1, 0, TYP_NONE },
 	{ "a", FLDT_DINODE_A, inode_a_offset, inode_a_count,
 	  FLD_COUNT|FLD_OFFSET, TYP_NONE },
+#endif
 	{ NULL }
 };
 

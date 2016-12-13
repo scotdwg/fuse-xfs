@@ -44,8 +44,9 @@ int
 calc_attr_offset(xfs_mount_t *mp, xfs_dinode_t *dino)
 {
 	xfs_dinode_core_t	*dinoc = &dino->di_core;
-	int			offset = ((__psint_t) &dino->di_u)
+	int			offset = ((__psint_t) &dino->di_crc)
 						- (__psint_t)dino;
+        xfs_bmdr_block_t        *data;
 
 	/*
 	 * don't worry about alignment when calculating offset
@@ -63,8 +64,9 @@ calc_attr_offset(xfs_mount_t *mp, xfs_dinode_t *dino)
 						sizeof(xfs_bmbt_rec_t);
 		break;
 	case XFS_DINODE_FMT_BTREE:
-		offset += be16_to_cpu(dino->di_u.di_bmbt.bb_numrecs) * 
-						sizeof(xfs_bmbt_rec_t);
+                data = (xfs_bmdr_block_t *)XFS_DFORK_DPTR(dino);
+                offset += be16_to_cpu(data->bb_numrecs) *
+                                                sizeof(xfs_bmbt_rec_t);
 		break;
 	default:
 		do_error(_("Unknown inode format.\n"));
@@ -295,7 +297,7 @@ clear_dinode(xfs_mount_t *mp, xfs_dinode_t *dino, xfs_ino_t ino_num)
 	/* and clear the forks */
 
 	if (dirty && !no_modify)
-		memset(&dino->di_u, 0, XFS_LITINO(mp));
+		memset(&dino->di_crc, 0, XFS_LITINO(mp, dino->di_core.di_version));
 
 	return(dirty);
 }
@@ -1925,10 +1927,10 @@ process_check_inode_forkoff(
 	case XFS_DINODE_FMT_LOCAL:	/* fall through ... */
 	case XFS_DINODE_FMT_EXTENTS:	/* fall through ... */
 	case XFS_DINODE_FMT_BTREE:
-		if (dinoc->di_forkoff >= (XFS_LITINO(mp) >> 3)) {
+		if (dinoc->di_forkoff >= (XFS_LITINO(mp, dinoc->di_version) >> 3)) {
 			do_warn(_("bad attr fork offset %d in inode %llu, "
 				"max=%d\n"), dinoc->di_forkoff, lino,
-				XFS_LITINO(mp) >> 3);
+				XFS_LITINO(mp, dinoc->di_version) >> 3);
 			return 1;
 		}
 		break;

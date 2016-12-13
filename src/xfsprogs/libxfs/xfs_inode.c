@@ -205,8 +205,9 @@ xfs_itobp(
 		imap.im_blkno = bno;
 		error = xfs_imap(mp, tp, ip->i_ino, &imap,
 					XFS_IMAP_LOOKUP | imap_flags);
-		if (error)
+		if (error) {
 			return error;
+		}
 
 		/*
 		 * Fill in the fields in the inode that will be used to
@@ -227,8 +228,9 @@ xfs_itobp(
 	ASSERT(bno == 0 || bno == imap.im_blkno);
 
 	error = xfs_imap_to_bp(mp, tp, &imap, &bp, buf_flags, imap_flags);
-	if (error)
+	if (error) {
 		return error;
+	}
 
 	if (!bp) {
 		ASSERT(buf_flags & XFS_BUF_TRYLOCK);
@@ -303,7 +305,8 @@ xfs_iformat(
 		}
 		ip->i_d.di_size = 0;
 		ip->i_size = 0;
-		ip->i_df.if_u2.if_rdev = be32_to_cpu(dip->di_u.di_dev);
+		ip->i_df.if_u2.if_rdev = xfs_dinode_get_rdev(dip);
+				/* be32_to_cpu(dip->di_u.di_dev); */
 		break;
 
 	case S_IFREG:
@@ -938,8 +941,9 @@ xfs_imap(
 	fsbno = imap->im_blkno ?
 		XFS_DADDR_TO_FSB(mp, imap->im_blkno) : NULLFSBLOCK;
 	error = xfs_dilocate(mp, tp, ino, &fsbno, &len, &off, flags);
-	if (error)
+	if (error) {
 		return error;
+	}
 
 	imap->im_blkno = XFS_FSB_TO_DADDR(mp, fsbno);
 	imap->im_len = XFS_FSB_TO_BB(mp, len);
@@ -1157,15 +1161,19 @@ xfs_iflush_fork(
 	case XFS_DINODE_FMT_DEV:
 		if (iip->ili_format.ilf_fields & XFS_ILOG_DEV) {
 			ASSERT(whichfork == XFS_DATA_FORK);
+/*
 			dip->di_u.di_dev = cpu_to_be32(ip->i_df.if_u2.if_rdev);
+*/
 		}
 		break;
 
 	case XFS_DINODE_FMT_UUID:
 		if (iip->ili_format.ilf_fields & XFS_ILOG_UUID) {
 			ASSERT(whichfork == XFS_DATA_FORK);
+/*
 			memcpy(&dip->di_u.di_muuid, &ip->i_df.if_u2.if_uuid,
 				sizeof(uuid_t));
+*/
 		}
 		break;
 

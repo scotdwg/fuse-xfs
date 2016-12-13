@@ -1067,8 +1067,12 @@ xfs_dir2_sf_to_block(
 		 * Copy a real entry.
 		 */
 		dep = (xfs_dir2_data_entry_t *)((char *)block + newoffset);
-		dep->inumber = cpu_to_be64(xfs_dir2_sf_get_inumber(sfp,
-				xfs_dir2_sf_inumberp(sfep)));
+		if (XFS_SB_VERSION_NUM(&dp->i_mount->m_sb) == XFS_SB_VERSION_5)
+			dep->inumber = cpu_to_be64(xfs_dir2_sf_get_inumber(sfp,
+					xfs_dir3_sf_inumberp(sfep)));
+		else
+			dep->inumber = cpu_to_be64(xfs_dir2_sf_get_inumber(sfp,
+					xfs_dir2_sf_inumberp(sfep)));
 		dep->namelen = sfep->namelen;
 		memcpy(dep->name, sfep->name, dep->namelen);
 		tagp = xfs_dir2_data_entry_tag_p(dep);
@@ -1084,7 +1088,7 @@ xfs_dir2_sf_to_block(
 		if (++i == sfp->hdr.count)
 			sfep = NULL;
 		else
-			sfep = xfs_dir2_sf_nextentry(sfp, sfep);
+			sfep = xfs_dir2_sf_nextentry(&sfp->hdr, sfep);
 	}
 	/* Done with the temporary buffer */
 	kmem_free(buf);

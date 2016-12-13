@@ -1958,8 +1958,9 @@ xfs_da_do_buf(
 					nfsb,
 					XFS_BMAPI_METADATA |
 						XFS_BMAPI_AFLAG(whichfork),
-					NULL, 0, mapp, &nmap, NULL, NULL)))
+					NULL, 0, mapp, &nmap, NULL, NULL))) {
 				goto exit0;
+			}
 		}
 	} else {
 		map.br_startblock = XFS_DADDR_TO_FSB(mp, mappedbno);
@@ -2049,9 +2050,9 @@ xfs_da_do_buf(
 	 */
 	if (bplist) {
 		rbp = xfs_da_buf_make(nbplist, bplist, ra);
-	} else if (bp)
+	} else if (bp) {
 		rbp = xfs_da_buf_make(1, &bp, ra);
-	else
+	} else
 		rbp = NULL;
 	/*
 	 * For read_buf, check the magic number.
@@ -2072,8 +2073,14 @@ xfs_da_do_buf(
 				   (magic != XFS_ATTR_LEAF_MAGIC) &&
 				   (magic != XFS_DIR2_LEAF1_MAGIC) &&
 				   (magic != XFS_DIR2_LEAFN_MAGIC) &&
+				   (magic != XFS_ATTR3_LEAF_MAGIC) &&
+				   (magic != XFS_DIR3_LEAF1_MAGIC) &&
+				   (magic != XFS_DIR3_LEAFN_MAGIC) &&
 				   (magic1 != XFS_DIR2_BLOCK_MAGIC) &&
+				   (magic1 != XFS_DIR3_BLOCK_MAGIC) &&
 				   (magic1 != XFS_DIR2_DATA_MAGIC) &&
+				   (magic1 != XFS_DIR3_DATA_MAGIC) &&
+				   (be32_to_cpu(free->hdr.magic) != XFS_DIR3_FREE_MAGIC) &&
 				   (be32_to_cpu(free->hdr.magic) != XFS_DIR2_FREE_MAGIC),
 				mp, XFS_ERRTAG_DA_READ_BUF,
 				XFS_RANDOM_DA_READ_BUF))) {

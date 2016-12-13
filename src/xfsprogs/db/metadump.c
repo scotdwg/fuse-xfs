@@ -907,7 +907,7 @@ obfuscate_sf_dir(
 	__uint64_t		ino_dir_size;
 	int			i;
 
-	sfp = &dip->di_u.di_dir2sf;
+	sfp = (xfs_dir2_sf_t *)XFS_DFORK_DPTR(dip);
 	ino_dir_size = be64_to_cpu(dip->di_core.di_size);
 	if (ino_dir_size > XFS_DFORK_DSIZE(dip, mp)) {
 		ino_dir_size = XFS_DFORK_DSIZE(dip, mp);
@@ -969,8 +969,10 @@ obfuscate_sf_symlink(
 		len = XFS_DFORK_DSIZE(dip, mp);
 	}
 
-	while (len > 0)
-		dip->di_u.di_symlink[--len] = random() % 127 + 1;
+	while (len > 0) {
+                char *ptr = (char *)XFS_DFORK_DPTR(dip);
+                ptr[--len] = random() % 127 + 1;
+	}
 }
 
 static void
@@ -1601,7 +1603,7 @@ process_inode(
 	nametable_clear();
 
 	/* copy extended attributes if they exist and forkoff is valid */
-	if (success && XFS_DFORK_DSIZE(dip, mp) < XFS_LITINO(mp)) {
+	if (success && XFS_DFORK_DSIZE(dip, mp) < XFS_LITINO(mp, dip->di_core.di_version)) {
 		attr_data.remote_val_count = 0;
 		switch (dip->di_core.di_aformat) {
 			case XFS_DINODE_FMT_LOCAL:

@@ -64,8 +64,10 @@ xfs_ialloc_log_di(
 		offsetof(xfs_dinode_core_t, di_flags),
 		offsetof(xfs_dinode_core_t, di_gen),
 		offsetof(xfs_dinode_t, di_next_unlinked),
+#if 0
 		offsetof(xfs_dinode_t, di_u),
 		offsetof(xfs_dinode_t, di_a),
+#endif
 		sizeof(xfs_dinode_t)
 	};
 
@@ -1084,7 +1086,7 @@ xfs_dilocate(
 					"(0x%llx)",
 					ino, XFS_AGINO_TO_INO(mp, agno, agino));
 		}
-		xfs_stack_trace();
+		/* xfs_stack_trace(); */
 #endif /* DEBUG */
 		return XFS_ERROR(EINVAL);
 	}

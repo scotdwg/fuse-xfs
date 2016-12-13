@@ -2713,7 +2713,7 @@ process_inode(
 		error++;
 		return;
 	}
-	if ((unsigned int)XFS_DFORK_ASIZE(dip, mp) >= XFS_LITINO(mp))  {
+	if ((unsigned int)XFS_DFORK_ASIZE(dip, mp) >= XFS_LITINO(mp, idic.di_version))  {
 		if (v)
 			dbprintf(_("bad fork offset %d for inode %lld\n"),
 				idic.di_forkoff, id->ino);
@@ -3686,7 +3686,7 @@ process_sf_dir_v2(
 		offset =
 			xfs_dir2_sf_get_offset(sfe) +
 			xfs_dir2_data_entsize(sfe->namelen);
-		sfe = xfs_dir2_sf_nextentry(sf, sfe);
+		sfe = xfs_dir2_sf_nextentry(&sf->hdr, sfe);
 	}
 	if (i < 0 && (__psint_t)sfe - (__psint_t)sf != 
 					be64_to_cpu(dip->di_core.di_size)) {

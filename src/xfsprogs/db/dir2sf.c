@@ -76,7 +76,8 @@ dir2_inou_i4_count(
 	xfs_dir2_sf_t	*sf;
 
 	ASSERT(bitoffs(startoff) == 0);
-	sf = &((xfs_dinode_t *)obj)->di_u.di_dir2sf;
+	xfs_dinode_t *dip = (xfs_dinode_t *)obj;
+        sf = (xfs_dir2_sf_t *)XFS_DFORK_DPTR(dip);
 	return sf->hdr.i8count == 0;
 }
 
@@ -89,7 +90,8 @@ dir2_inou_i8_count(
 	xfs_dir2_sf_t	*sf;
 
 	ASSERT(bitoffs(startoff) == 0);
-	sf = &((xfs_dinode_t *)obj)->di_u.di_dir2sf;
+	xfs_dinode_t *dip = (xfs_dinode_t *)obj;
+        sf = (xfs_dir2_sf_t *)XFS_DFORK_DPTR(dip);
 	return sf->hdr.i8count != 0;
 }
 
@@ -104,7 +106,8 @@ dir2_inou_size(
 
 	ASSERT(bitoffs(startoff) == 0);
 	ASSERT(idx == 0);
-	sf = &((xfs_dinode_t *)obj)->di_u.di_dir2sf;
+	xfs_dinode_t *dip = (xfs_dinode_t *)obj;
+        sf = (xfs_dir2_sf_t *)XFS_DFORK_DPTR(dip);
 	return bitize(sf->hdr.i8count ?
 		      (uint)sizeof(xfs_dir2_ino8_t) :
 		      (uint)sizeof(xfs_dir2_ino4_t));
@@ -151,7 +154,7 @@ dir2_sf_entry_size(
 	sf = (xfs_dir2_sf_t *)((char *)obj + byteize(startoff));
 	e = xfs_dir2_sf_firstentry(sf);
 	for (i = 0; i < idx; i++)
-		e = xfs_dir2_sf_nextentry(sf, e);
+		e = xfs_dir2_sf_nextentry(&sf->hdr, e);
 	return bitize((int)xfs_dir2_sf_entsize_byentry(sf, e));
 }
 
@@ -196,7 +199,7 @@ dir2_sf_list_offset(
 	sf = (xfs_dir2_sf_t *)((char *)obj + byteize(startoff));
 	e = xfs_dir2_sf_firstentry(sf);
 	for (i = 0; i < idx; i++)
-		e = xfs_dir2_sf_nextentry(sf, e);
+		e = xfs_dir2_sf_nextentry(&sf->hdr, e);
 	return bitize((int)((char *)e - (char *)sf));
 }
 
@@ -216,6 +219,6 @@ dir2sf_size(
 	sf = (xfs_dir2_sf_t *)((char *)obj + byteize(startoff));
 	e = xfs_dir2_sf_firstentry(sf);
 	for (i = 0; i < sf->hdr.count; i++)
-		e = xfs_dir2_sf_nextentry(sf, e);
+		e = xfs_dir2_sf_nextentry(&sf->hdr, e);
 	return bitize((int)((char *)e - (char *)sf));
 }
